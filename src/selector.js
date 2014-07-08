@@ -1,14 +1,25 @@
 /*
-** lib: Simple DOM Selector
-** usage: $(args), selecting JavaScript code should be under main DOM html, just before </body>
+** @lib: Simple DOM Selector
+** @usage: $(args), selecting JavaScript code should be under main DOM html, just before </body>
 ** args format supported: tagName#id, tagName.class, tagName, #id, .class
 ** return: Array [element0, element1 ...]
-** author: willizm.cn@gmail.com
+** @author: willizm.cn@gmail.com
 */
 var $ = function (selector) {
     "use strict";
     // Check args
     if (!/^[\-\w]*(#|\.)?[\-\w]*$/i.test(selector) || !selector) { return null; }
+    
+    // Add Array.prototype.indexOf method for lte IE8
+    if (!(Array.prototype.indexOf instanceof Function)) {
+        Array.prototype.indexOf = function(sth) {
+            for (var i = 0; i < this.length; i++) {
+                if (sth == this[i]) {
+                    return i;
+                }
+            }
+        }
+    }
     
     var tag = {
         "name": "",
