@@ -57,6 +57,5 @@ var $ = function (selector) {
     } else {
         els = document.getElementsByTagName(tag.name);
     }
-    console.log(this);
     return els;
 }
